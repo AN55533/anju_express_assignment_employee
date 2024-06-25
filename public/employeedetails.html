@@ -1,0 +1,94 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+     
+            <h2 class="text-xl font-semibold mb-2">Employee List</h2>
+            EMPLOYEE ID: <span id="id"></span>
+            <br> <br>
+            EMPLOYEE NAME: <span id="name"></span>
+            <br> <br>
+            EMPLOYEE ROLE: <span id="role"></span>
+
+            
+        </div>
+
+        <div class="mt-4 ml-[40%]">
+
+        
+        
+          <!-- <button type="submit " class="w-20 h-16 border ml-4 bg-slate-300 hover:bg-slate-400" onclick="update()"> UPDATE</button>
+  
+          <form method="post" id="delete">
+  
+          <button type="submit " class="w-20 h-16 border ml-4 bg-slate-300 hover:bg-slate-400" onclick="dele()"> DELETE </button>
+      </form> -->
+          
+      </div >
+   
+      <script>
+
+
+        // function update(){
+        //             const id=window.location.pathname.split('/').pop();
+                    
+        //             const url=`/update/${id}`;
+        
+        
+        //             // document.getElementById("pid").innerHTML="hello"+id
+        
+        //             console.log(url);
+        //             window.location.href=url;
+        //         }
+        
+        
+        // function dele(){
+        
+        //     const id=window.location.pathname.split('/').pop();
+        
+        //     document.getElementById('delete').action = `/delete/${id}`;
+        
+        
+        
+        // }
+        
+        
+        
+                async function getdata(){
+        
+                    const url=window.location.href;
+                    const id=window.location.pathname.split('/').pop();
+        
+                    const ul=`employeedetails/data/${id}`;
+                    try{
+                        const response=await fetch(`/employeedetails/data/${id}`);
+                    
+                    // if (!response.ok){
+                    //     throw new Error('Failed to fetch blog details');
+                    // }
+                    const data=await response.json();
+        
+        
+                    document.getElementById("id").innerHTML=data.id;
+                    document.getElementById("name").innerHTML=data.name;
+                    document.getElementById("role").innerHTML=data.role;
+                }
+        
+                catch(error){
+                    console.log("error");
+                    document.getElementById("empid").innerHTML="no id found";
+                }
+                }
+        
+                document.addEventListener('DOMContentLoaded',getdata);
+            </script>
+</body>
+</html>
